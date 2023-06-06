@@ -1,6 +1,10 @@
 package schoppingcart;
 
 import org.junit.jupiter.api.Test;
+import shoppingcart.Product;
+import shoppingcart.ProductCatalog;
+import shoppingcart.ShoppingBasket;
+import shoppingcart.ShoppingCartService;
 
 import static org.mockito.Mockito.*;
 import static org.mockito.internal.verification.VerificationModeFactory.times;

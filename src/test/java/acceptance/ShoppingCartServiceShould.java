@@ -1,9 +1,13 @@
 package acceptance;
 
 import org.junit.jupiter.api.Test;
-import schoppingcart.ProductCatalog;
-import schoppingcart.ShoppingBasket;
-import schoppingcart.ShoppingCartService;
+import shoppingcart.Product;
+import shoppingcart.ProductCatalog;
+import shoppingcart.ShoppingBasket;
+import shoppingcart.ShoppingCartService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,7 +16,9 @@ public class ShoppingCartServiceShould {
     @Test
     void add_one_product_that_exists_and_print_the_cart(){
         //Arrange
-        ProductCatalog productCatalog = new ProductCatalog();
+
+        List<Product> catalog = new ArrayList<>();
+        ProductCatalog productCatalog = new ProductCatalog(catalog);
         ShoppingBasket shoppingBasket = new ShoppingBasket();
         ShoppingCartService shoppingCartService = new ShoppingCartService(productCatalog, shoppingBasket);
 

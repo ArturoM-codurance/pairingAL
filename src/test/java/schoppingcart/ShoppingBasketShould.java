@@ -1,6 +1,8 @@
 package schoppingcart;
 
 import org.junit.jupiter.api.Test;
+import shoppingcart.Product;
+import shoppingcart.ShoppingBasket;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +15,13 @@ class ShoppingBasketShould {
     void store_received_products(){
         //Arrange
         Product productToStore = new Product("Corn");
-        ShoppingBasket shoppingBasket = new ShoppingBasket();
+        ArrayList<Product> storedProducts = new ArrayList<>(List.of());
+        ShoppingBasket shoppingBasket = new ShoppingBasket(storedProducts);
 
         //Act
         shoppingBasket.store(productToStore);
         //Arrange
-        ArrayList<Product> expectedStoredProducts = new ArrayList<>(List.of(productToStore));
-        ArrayList<Product> receivedProducts = shoppingBasket.getAllProducts();
-        assertEquals(expectedStoredProducts, receivedProducts);
+        assertTrue(storedProducts.contains(productToStore));
     }
 
 }

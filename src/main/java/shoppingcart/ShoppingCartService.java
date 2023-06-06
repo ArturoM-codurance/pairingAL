@@ -1,4 +1,4 @@
-package schoppingcart;
+package shoppingcart;
 
 public class ShoppingCartService {
     private ProductCatalog productCatalog;
