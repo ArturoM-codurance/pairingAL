@@ -1,0 +1,30 @@
+title This is a title
+
+participant User
+
+participant ShoppingCartService
+
+participant Product Catalog
+
+participant Shopping Basket
+
+participant Product
+
+
+User->Product Catalog: lookup item
+
+Product Catalog->User: product back
+
+User->ShoppingCartService: checked product
+
+ShoppingCartService->Shopping Basket: store
+
+ShoppingCartService->Shopping Basket: I need to print things
+
+Shopping Basket->Product: to string yourself -to compare-
+
+Product->Shopping Basket: here I am "stringed"
+
+Shopping Basket->ShoppingCartService: here you go the formatted info
+
+ShoppingCartService->User: product/s back
