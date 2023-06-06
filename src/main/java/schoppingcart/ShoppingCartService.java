@@ -1,8 +1,17 @@
 package schoppingcart;
 
 public class ShoppingCartService {
+    private ProductCatalog productCatalog;
+    private ShoppingBasket shoppingBasket;
+
+    public ShoppingCartService(ProductCatalog productCatalog, ShoppingBasket shoppingBasket) {
+        this.productCatalog = productCatalog;
+        this.shoppingBasket = shoppingBasket;
+    }
+
     public void addItem(String productName) {
-        throw new UnsupportedOperationException();
+        Product foundProduct = productCatalog.findByName(productName);
+        shoppingBasket.store(foundProduct);
     }
 
     public String printShoppingCart() {
