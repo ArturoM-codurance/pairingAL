@@ -5,27 +5,13 @@ import java.util.ArrayList;
 
 public class Formatter {
     private final String STATEMENT_HEADER = "--------------------------------------------\n" +
-                                                   "| Product name | Price with VAT | Quantity |\n" +
-                                                   "| -----------  | -------------- | -------- |\n";
+                                            "| Product name | Price with VAT | Quantity |\n" +
+                                            "| -----------  | -------------- | -------- |\n";
     private final String PROMOTION_APPLIED = "| Promotion:                               |\n";
     private final String TOTAL_SEPARATOR = "--------------------------------------------\n";
     private final String PRODUCTS_SEPARATOR = "|------------------------------------------|\n";
     private final String ZERO_PRODUCTS_AND_PRICE_ZERO = "| Total products: 0                        |\n" +
-                                                               "| Total price: 0.00 €                      |\n";
-
-    public String productStatement(Product product) {
-        String statement;
-
-        statement = STATEMENT_HEADER +
-                    product.printProductStatementLine() +
-                    PRODUCTS_SEPARATOR +
-                    PROMOTION_APPLIED +
-                    TOTAL_SEPARATOR +
-                    "| Total products: 1                        |\n" +
-                    "| Total price: " + product.FormattedPrice() + "                      |\n" +
-                    TOTAL_SEPARATOR;
-        return statement;
-    }
+                                                        "| Total price: 0.00 €                      |\n";
 
     public String emptyStatement() {
         return STATEMENT_HEADER +
@@ -39,11 +25,11 @@ public class Formatter {
     public String productsStatement(ArrayList<Product> products) {
         String statement;
 
-        String productList = "";
+        StringBuilder productList = new StringBuilder();
         int totalProducts = products.size();
         double totalPrice = 0;
         for (Product product : products) {
-            productList += product.printProductStatementLine();
+            productList.append(product.printProductStatementLine());
             totalPrice += Double.parseDouble(product.FormattedPrice().replaceAll(",", "."));
         }
 
@@ -52,7 +38,7 @@ public class Formatter {
                     PRODUCTS_SEPARATOR +
                     PROMOTION_APPLIED +
                     TOTAL_SEPARATOR +
-                    "| Total products: "+totalProducts+"                        |\n" +
+                    "| Total products: " + totalProducts + "                        |\n" +
                     "| Total price: " + formattedTotal(totalPrice) + " €                      |\n" +
                     TOTAL_SEPARATOR;
 
