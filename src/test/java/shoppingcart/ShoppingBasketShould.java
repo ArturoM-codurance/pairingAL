@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class ShoppingBasketShould {
 
@@ -14,7 +15,8 @@ class ShoppingBasketShould {
         //Arrange
         Product productToStore = new Product("Corn", 0.73);
         ArrayList<Product> storedProducts = new ArrayList<>(List.of());
-        ShoppingBasket shoppingBasket = new ShoppingBasket(storedProducts);
+        Formatter formatter = new Formatter();
+        ShoppingBasket shoppingBasket = new ShoppingBasket(storedProducts, formatter);
 
         //Act
         shoppingBasket.store(productToStore);
@@ -26,97 +28,29 @@ class ShoppingBasketShould {
     void print_empty_basket(){
         //Arrange
         ArrayList<Product> products = new ArrayList<>();
-        ShoppingBasket shoppingBasket = new ShoppingBasket(products);
+        Formatter formatter = mock(Formatter.class);
+        ShoppingBasket shoppingBasket = new ShoppingBasket(products, formatter);
+
         //Act
-        String statementReceived = shoppingBasket.printBasket();
+        shoppingBasket.printBasket();
+
         //Arrange
-        String statementExpected = """
-                --------------------------------------------
-                | Product name | Price with VAT | Quantity |
-                | -----------  | -------------- | -------- |
-                |------------------------------------------|
-                | Promotion:                               |
-                --------------------------------------------
-                | Total products: 0                        |
-                | Total price: 0.00 €                      |
-                --------------------------------------------
-                """;
-        assertEquals(statementExpected, statementReceived);
+        verify(formatter, times(1)).emptyStatement();
     }
 
     @Test
     void print_basket_with_one_product(){
         //Arrange
-        Product tomatoe = new Product("Bread", 0.88);
-        ArrayList<Product> products = new ArrayList<>(List.of(tomatoe));
-        ShoppingBasket shoppingBasket = new ShoppingBasket(products);
+        Product bread = new Product("Bread", 0.88);
+        ArrayList<Product> products = new ArrayList<>(List.of(bread));
+        Formatter formatter = mock(Formatter.class);
+        ShoppingBasket shoppingBasket = new ShoppingBasket(products, formatter);
 
         //Act
-        String actualStatement = shoppingBasket.printBasket();
+        shoppingBasket.printBasket();
 
         //Arrange
-        String expectedStatement = """
-                --------------------------------------------
-                | Product name | Price with VAT | Quantity |
-                | -----------  | -------------- | -------- |
-                | Bread        | 0,88 €         | 1        |
-                |------------------------------------------|
-                | Promotion:                               |
-                --------------------------------------------
-                | Total products: 1                        |
-                | Total price: 0,88 €                      |
-                --------------------------------------------
-                """;
-        assertEquals(expectedStatement, actualStatement);
-    }@Test
-    void print_basket_with_another_product(){
-        //Arrange
-        Product tomatoe = new Product("Corn", 1.50);
-        ArrayList<Product> products = new ArrayList<>(List.of(tomatoe));
-        ShoppingBasket shoppingBasket = new ShoppingBasket(products);
-
-        //Act
-        String actualStatement = shoppingBasket.printBasket();
-
-        //Arrange
-        String expectedStatement = """
-                --------------------------------------------
-                | Product name | Price with VAT | Quantity |
-                | -----------  | -------------- | -------- |
-                | Corn         | 1,50 €         | 1        |
-                |------------------------------------------|
-                | Promotion:                               |
-                --------------------------------------------
-                | Total products: 1                        |
-                | Total price: 1,50 €                      |
-                --------------------------------------------
-                """;
-        assertEquals(expectedStatement, actualStatement);
-    }
-    @Test
-    void print_basket_with_aguardiente_product(){
-        //Arrange
-        Product tomatoe = new Product("Aguardiente", 7.30);
-        ArrayList<Product> products = new ArrayList<>(List.of(tomatoe));
-        ShoppingBasket shoppingBasket = new ShoppingBasket(products);
-
-        //Act
-        String actualStatement = shoppingBasket.printBasket();
-
-        //Arrange
-        String expectedStatement = """
-                --------------------------------------------
-                | Product name | Price with VAT | Quantity |
-                | -----------  | -------------- | -------- |
-                | Aguardiente  | 7,30 €         | 1        |
-                |------------------------------------------|
-                | Promotion:                               |
-                --------------------------------------------
-                | Total products: 1                        |
-                | Total price: 7,30 €                      |
-                --------------------------------------------
-                """;
-        assertEquals(expectedStatement, actualStatement);
+        verify(formatter, times(1)).oneProductStatement(bread);
     }
 
 }

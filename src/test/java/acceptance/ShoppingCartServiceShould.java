@@ -1,10 +1,7 @@
 package acceptance;
 
 import org.junit.jupiter.api.Test;
-import shoppingcart.Product;
-import shoppingcart.ProductCatalog;
-import shoppingcart.ShoppingBasket;
-import shoppingcart.ShoppingCartService;
+import shoppingcart.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +16,8 @@ public class ShoppingCartServiceShould {
         Product tomatoe = new Product("Tomatoe", 0.73);
         List<Product> catalog = new ArrayList<>(List.of(tomatoe));
         ProductCatalog productCatalog = new ProductCatalog(catalog);
-        ShoppingBasket shoppingBasket = new ShoppingBasket();
+        Formatter formatter = new Formatter();
+        ShoppingBasket shoppingBasket = new ShoppingBasket(formatter);
         ShoppingCartService shoppingCartService = new ShoppingCartService(productCatalog, shoppingBasket);
 
         //When
@@ -48,7 +46,8 @@ public class ShoppingCartServiceShould {
         Product Bread = new Product("Bread", 0.88);
         List<Product> catalog = new ArrayList<>(List.of(Corn, Bread));
         ProductCatalog productCatalog = new ProductCatalog(catalog);
-        ShoppingBasket shoppingBasket = new ShoppingBasket();
+        Formatter formatter = new Formatter();
+        ShoppingBasket shoppingBasket = new ShoppingBasket(formatter);
         ShoppingCartService shoppingCartService = new ShoppingCartService(productCatalog, shoppingBasket);
 
         //When
