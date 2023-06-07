@@ -1,6 +1,7 @@
 package shoppingcart;
 
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ShoppingBasket {
@@ -27,22 +28,31 @@ public class ShoppingBasket {
     }
 
     public String printBasket() {
-        if(products.isEmpty()){
-            return STATEMENT_HEADER +
-                   PRODUCTS_SEPARATOR +
-                   PROMOTION_APPLIED +
-                   TOTAL_SEPARATOR +
-                   ZERO_PRODUCTS_AND_PRICE_ZERO +
-                   TOTAL_SEPARATOR;
+        String statement = STATEMENT_HEADER +
+                           PRODUCTS_SEPARATOR +
+                           PROMOTION_APPLIED +
+                           TOTAL_SEPARATOR +
+                           ZERO_PRODUCTS_AND_PRICE_ZERO +
+                           TOTAL_SEPARATOR;
+
+        if (!products.isEmpty()) {
+            Product product = products.get(0);
+
+            String productName = product.getProductName();
+            double price = product.getPrice();
+            DecimalFormat formatter = new DecimalFormat("#0.00");
+            String formattedPrice = formatter.format(price);
+
+            statement = STATEMENT_HEADER +
+                        String.format("| %-"+13+"s" + "| %-"+14+"s "+"| 1        |\n", productName, formattedPrice + " €") +
+                        PRODUCTS_SEPARATOR +
+                        PROMOTION_APPLIED +
+                        TOTAL_SEPARATOR +
+                        "| Total products: 1                        |\n" +
+                        "| Total price: "+formattedPrice+" €                      |\n" +
+                        TOTAL_SEPARATOR;
 
         }
-        return STATEMENT_HEADER +
-               "| Bread        | 0.88 €         | 1        |\n" +
-               PRODUCTS_SEPARATOR +
-               PROMOTION_APPLIED +
-               TOTAL_SEPARATOR +
-               "| Total products: 1                        |\n" +
-               "| Total price: 0.88 €                      |\n" +
-               TOTAL_SEPARATOR;
+        return statement;
     }
 }
