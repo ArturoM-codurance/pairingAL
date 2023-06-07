@@ -19,6 +19,6 @@ public class ShoppingBasket {
     }
 
     public String printBasket() {
-        throw new UnsupportedOperationException();
+        return null;
     }
 }

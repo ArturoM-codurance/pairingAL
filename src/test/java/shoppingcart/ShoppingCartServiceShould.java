@@ -1,10 +1,6 @@
-package schoppingcart;
+package shoppingcart;
 
 import org.junit.jupiter.api.Test;
-import shoppingcart.Product;
-import shoppingcart.ProductCatalog;
-import shoppingcart.ShoppingBasket;
-import shoppingcart.ShoppingCartService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;

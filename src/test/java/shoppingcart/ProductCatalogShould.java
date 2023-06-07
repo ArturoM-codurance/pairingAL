@@ -1,8 +1,6 @@
-package schoppingcart;
+package shoppingcart;
 
 import org.junit.jupiter.api.Test;
-import shoppingcart.Product;
-import shoppingcart.ProductCatalog;
 
 import java.util.ArrayList;
 import java.util.List;
