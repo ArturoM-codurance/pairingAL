@@ -15,17 +15,17 @@ public class ShoppingCartServiceShould {
 
     @Test
     void add_one_product_that_exists_and_print_the_cart(){
-        //Arrange
+        //Given
         Product tomatoe = new Product("Tomatoe", 0.73);
         List<Product> catalog = new ArrayList<>(List.of(tomatoe));
         ProductCatalog productCatalog = new ProductCatalog(catalog);
         ShoppingBasket shoppingBasket = new ShoppingBasket();
         ShoppingCartService shoppingCartService = new ShoppingCartService(productCatalog, shoppingBasket);
 
-        //Act
+        //When
         shoppingCartService.addItem("Tomatoe");
 
-        //Arrange
+        //Then
         String expectedPrintedShoppingCart = """
                 --------------------------------------------
                 | Product name | Price with VAT | Quantity |
@@ -39,6 +39,38 @@ public class ShoppingCartServiceShould {
                 --------------------------------------------
                 """;
         assertEquals(expectedPrintedShoppingCart, shoppingCartService.printShoppingCart());
+    }
+
+    @Test
+    void add_two_products_that_exist_and_print_the_cart(){
+        //Given
+        Product Corn = new Product("Corn", 1.50);
+        Product Bread = new Product("Bread", 0.88);
+        List<Product> catalog = new ArrayList<>(List.of(Corn, Bread));
+        ProductCatalog productCatalog = new ProductCatalog(catalog);
+        ShoppingBasket shoppingBasket = new ShoppingBasket();
+        ShoppingCartService shoppingCartService = new ShoppingCartService(productCatalog, shoppingBasket);
+
+        //When
+        shoppingCartService.addItem("Corn");
+        shoppingCartService.addItem("Bread");
+
+        //Then
+        String receivedPrintedShoppingCart = shoppingCartService.printShoppingCart();
+        String expectedPrintedShoppingCart = """
+                --------------------------------------------
+                | Product name | Price with VAT | Quantity |
+                | -----------  | -------------- | -------- |
+                | Corn         | 1,50 €         | 1        |
+                | Bread        | 0,88 €         | 1        |
+                |------------------------------------------|
+                | Promotion:                               |
+                --------------------------------------------
+                | Total products: 2                        |
+                | Total price: 2,38 €                      |
+                --------------------------------------------
+                """;
+        assertEquals(expectedPrintedShoppingCart,receivedPrintedShoppingCart);
     }
 
 }
