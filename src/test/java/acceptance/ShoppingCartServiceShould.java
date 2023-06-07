@@ -16,8 +16,8 @@ public class ShoppingCartServiceShould {
     @Test
     void add_one_product_that_exists_and_print_the_cart(){
         //Arrange
-
-        List<Product> catalog = new ArrayList<>();
+        Product tomatoe = new Product("Tomatoe", 0.73);
+        List<Product> catalog = new ArrayList<>(List.of(tomatoe));
         ProductCatalog productCatalog = new ProductCatalog(catalog);
         ShoppingBasket shoppingBasket = new ShoppingBasket();
         ShoppingCartService shoppingCartService = new ShoppingCartService(productCatalog, shoppingBasket);
@@ -30,12 +30,12 @@ public class ShoppingCartServiceShould {
                 --------------------------------------------
                 | Product name | Price with VAT | Quantity |
                 | -----------  | -------------- | -------- |
-                | Tomatoe      | 0.73 €         | 1        |
+                | Tomatoe      | 0,73 €         | 1        |
                 |------------------------------------------|
                 | Promotion:                               |
                 --------------------------------------------
                 | Total products: 1                        |
-                | Total price: 0.73 €                      |
+                | Total price: 0,73 €                      |
                 --------------------------------------------
                 """;
         assertEquals(expectedPrintedShoppingCart, shoppingCartService.printShoppingCart());

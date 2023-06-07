@@ -14,7 +14,7 @@ public class Product {
         return productName.equals(name);
     }
 
-    public String getProductName() {
+    public String getName() {
         return productName;
     }
 
