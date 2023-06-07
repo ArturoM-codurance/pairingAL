@@ -37,12 +37,12 @@ public class ShoppingBasket {
 
         }
         return STATEMENT_HEADER +
-               "| Tomatoe      | 0.73 €         | 1        |\n" +
+               "| Bread        | 0.88 €         | 1        |\n" +
                PRODUCTS_SEPARATOR +
                PROMOTION_APPLIED +
                TOTAL_SEPARATOR +
                "| Total products: 1                        |\n" +
-               "| Total price: 0.73 €                      |\n" +
+               "| Total price: 0.88 €                      |\n" +
                TOTAL_SEPARATOR;
     }
 }

@@ -47,7 +47,7 @@ class ShoppingBasketShould {
     @Test
     void print_basket_with_one_product(){
         //Arrange
-        Product tomatoe = new Product("Tomatoe", 0.73);
+        Product tomatoe = new Product("Bread", 0.88);
         ArrayList<Product> products = new ArrayList<>(List.of(tomatoe));
         ShoppingBasket shoppingBasket = new ShoppingBasket(products);
 
@@ -59,12 +59,12 @@ class ShoppingBasketShould {
                 --------------------------------------------
                 | Product name | Price with VAT | Quantity |
                 | -----------  | -------------- | -------- |
-                | Tomatoe      | 0.73 €         | 1        |
+                | Bread        | 0.88 €         | 1        |
                 |------------------------------------------|
                 | Promotion:                               |
                 --------------------------------------------
                 | Total products: 1                        |
-                | Total price: 0.73 €                      |
+                | Total price: 0.88 €                      |
                 --------------------------------------------
                 """;
         assertEquals(expectedStatement, actualStatement);

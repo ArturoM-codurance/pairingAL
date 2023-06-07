@@ -35,7 +35,7 @@ public class ShoppingCartServiceShould {
                 | Promotion:                               |
                 --------------------------------------------
                 | Total products: 1                        |
-                | Total price: 0,73 €                      |
+                | Total price: 0.73 €                      |
                 --------------------------------------------
                 """;
         assertEquals(expectedPrintedShoppingCart, shoppingCartService.printShoppingCart());
