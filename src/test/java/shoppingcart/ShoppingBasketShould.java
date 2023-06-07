@@ -20,7 +20,7 @@ class ShoppingBasketShould {
 
         //Act
         shoppingBasket.store(productToStore);
-        //Arrange
+        //Assert
         assertTrue(storedProducts.contains(productToStore));
     }
     
@@ -34,7 +34,7 @@ class ShoppingBasketShould {
         //Act
         shoppingBasket.printBasket();
 
-        //Arrange
+        //Assert
         verify(formatter, times(1)).emptyStatement();
     }
 
@@ -49,7 +49,24 @@ class ShoppingBasketShould {
         //Act
         shoppingBasket.printBasket();
 
+        //Assert
+        verify(formatter, times(1)).oneProductStatement(bread);
+    }
+
+    @Test
+    void print_basket_with_two_products(){
         //Arrange
+        Product lettuce = new Product("lettuce", 0.73);
+        Product bread = new Product("Bread", 0.88);
+        ArrayList<Product> products = new ArrayList<>(List.of(lettuce, bread));
+        Formatter formatter = mock(Formatter.class);
+        ShoppingBasket shoppingBasket = new ShoppingBasket(products, formatter);
+
+        //Act
+        shoppingBasket.printBasket();
+
+        //Assert
+        verify(formatter, times(1)).oneProductStatement(lettuce);
         verify(formatter, times(1)).oneProductStatement(bread);
     }
 

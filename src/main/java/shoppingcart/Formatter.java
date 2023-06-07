@@ -1,7 +1,5 @@
 package shoppingcart;
 
-import java.text.DecimalFormat;
-
 public class Formatter {
     private final String STATEMENT_HEADER = "--------------------------------------------\n" +
                                                    "| Product name | Price with VAT | Quantity |\n" +
@@ -14,18 +12,14 @@ public class Formatter {
 
     public String oneProductStatement(Product product) {
         String statement;
-        String productName = product.getName();
-        double price = product.getPrice();
-        DecimalFormat formatter = new DecimalFormat("#0.00");
-        String formattedPrice = formatter.format(price);
 
         statement = STATEMENT_HEADER +
-                    String.format("| %-" + 13 + "s" + "| %-" + 14 + "s " + "| 1        |\n", productName, formattedPrice + " €") +
+                    product.printProductStatementLine() +
                     PRODUCTS_SEPARATOR +
                     PROMOTION_APPLIED +
                     TOTAL_SEPARATOR +
                     "| Total products: 1                        |\n" +
-                    "| Total price: " + formattedPrice + " €                      |\n" +
+                    "| Total price: " + product.FormattedPrice() + "                      |\n" +
                     TOTAL_SEPARATOR;
         return statement;
     }
