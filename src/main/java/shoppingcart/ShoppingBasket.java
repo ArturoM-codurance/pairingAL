@@ -18,4 +18,7 @@ public class ShoppingBasket {
         products.add(productToStore);
     }
 
+    public String printBasket() {
+        throw new UnsupportedOperationException();
+    }
 }

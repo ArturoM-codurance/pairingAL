@@ -15,6 +15,6 @@ public class ShoppingCartService {
     }
 
     public String printShoppingCart() {
-        throw new UnsupportedOperationException();
+        return shoppingBasket.printBasket();
     }
 }
