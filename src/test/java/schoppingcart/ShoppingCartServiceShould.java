@@ -6,6 +6,7 @@ import shoppingcart.ProductCatalog;
 import shoppingcart.ShoppingBasket;
 import shoppingcart.ShoppingCartService;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
@@ -26,6 +27,19 @@ class ShoppingCartServiceShould {
         //Assert
         verify(productCatalog,times(1)).findByName(productName);
         verify(shoppingBasket, times(1)).store(lettuceProduct);
+    }
+
+    @Test
+    void print_shopping_basket(){
+        //Arrange
+        ShoppingBasket shoppingBasket = mock(ShoppingBasket.class);
+        ProductCatalog productCatalog = mock(ProductCatalog.class);
+        ShoppingCartService shoppingCartService = new ShoppingCartService(productCatalog, shoppingBasket);
+
+        //Act
+        shoppingCartService.printShoppingCart();
+        //Assert
+        verify(shoppingBasket, times(1)).printBasket();
     }
 
 
