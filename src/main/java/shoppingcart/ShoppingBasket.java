@@ -42,7 +42,7 @@ public class ShoppingBasket {
                PROMOTION_APPLIED +
                TOTAL_SEPARATOR +
                "| Total products: 1                        |\n" +
-               "| Total price: 0,73 €                      |\n" +
+               "| Total price: 0.73 €                      |\n" +
                TOTAL_SEPARATOR;
     }
 }

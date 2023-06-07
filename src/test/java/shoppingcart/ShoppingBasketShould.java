@@ -64,7 +64,31 @@ class ShoppingBasketShould {
                 | Promotion:                               |
                 --------------------------------------------
                 | Total products: 1                        |
-                | Total price: 0,73 €                      |
+                | Total price: 0.73 €                      |
+                --------------------------------------------
+                """;
+        assertEquals(expectedStatement, actualStatement);
+    }@Test
+    void print_basket_with_another_product(){
+        //Arrange
+        Product tomatoe = new Product("Tomatoe", 0.73);
+        ArrayList<Product> products = new ArrayList<>(List.of(tomatoe));
+        ShoppingBasket shoppingBasket = new ShoppingBasket(products);
+
+        //Act
+        String actualStatement = shoppingBasket.printBasket();
+
+        //Arrange
+        String expectedStatement = """
+                --------------------------------------------
+                | Product name | Price with VAT | Quantity |
+                | -----------  | -------------- | -------- |
+                | Corn         | 1.50 €         | 1        |
+                |------------------------------------------|
+                | Promotion:                               |
+                --------------------------------------------
+                | Total products: 1                        |
+                | Total price: 1.50 €                      |
                 --------------------------------------------
                 """;
         assertEquals(expectedStatement, actualStatement);
