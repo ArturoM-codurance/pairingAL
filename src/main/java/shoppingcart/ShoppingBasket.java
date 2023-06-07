@@ -19,6 +19,16 @@ public class ShoppingBasket {
     }
 
     public String printBasket() {
-        return null;
+        return """
+                --------------------------------------------
+                | Product name | Price with VAT | Quantity |
+                | -----------  | -------------- | -------- |
+                |------------------------------------------|
+                | Promotion:                               |
+                --------------------------------------------
+                | Total products: 0                        |
+                | Total price: 0.00 €                      |
+                --------------------------------------------
+                """;
     }
 }
