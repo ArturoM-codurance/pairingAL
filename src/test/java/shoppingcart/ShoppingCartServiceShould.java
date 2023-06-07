@@ -16,7 +16,7 @@ class ShoppingCartServiceShould {
         ShoppingCartService shoppingCartService = new ShoppingCartService(productCatalog, shoppingBasket);
 
         String productName = "Lettuce";
-        Product lettuceProduct = new Product(productName);
+        Product lettuceProduct = new Product(productName, 0.73);
         when(productCatalog.findByName(productName)).thenReturn(lettuceProduct);
         //Act
         shoppingCartService.addItem(productName);

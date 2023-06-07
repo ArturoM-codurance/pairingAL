@@ -12,7 +12,7 @@ class ProductCatalogShould {
     @Test
     void return_a_received_product_exists_in_the_catalog(){
         //Arrange
-        Product expectedProduct = new Product("Corn");
+        Product expectedProduct = new Product("Corn", 0.73);
         ArrayList<Product> catalog = new ArrayList<>(List.of(expectedProduct));
         ProductCatalog productCatalog = new ProductCatalog(catalog);
         //Act

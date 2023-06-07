@@ -12,7 +12,7 @@ class ShoppingBasketShould {
     @Test
     void store_received_products(){
         //Arrange
-        Product productToStore = new Product("Corn");
+        Product productToStore = new Product("Corn", 0.73);
         ArrayList<Product> storedProducts = new ArrayList<>(List.of());
         ShoppingBasket shoppingBasket = new ShoppingBasket(storedProducts);
 
@@ -42,6 +42,32 @@ class ShoppingBasketShould {
                 --------------------------------------------
                 """;
         assertEquals(statementExpected, statementReceived);
+    }
+
+    @Test
+    void print_basket_with_one_product(){
+        //Arrange
+        Product tomatoe = new Product("Tomatoe", 0.73);
+        ArrayList<Product> products = new ArrayList<>(List.of(tomatoe));
+        ShoppingBasket shoppingBasket = new ShoppingBasket(products);
+
+        //Act
+        String actualStatement = shoppingBasket.printBasket();
+
+        //Arrange
+        String expectedStatement = """
+                --------------------------------------------
+                | Product name | Price with VAT | Quantity |
+                | -----------  | -------------- | -------- |
+                | Tomatoe      | 0.73 €         | 1        |
+                |------------------------------------------|
+                | Promotion:                               |
+                --------------------------------------------
+                | Total products: 1                        |
+                | Total price: 0,73 €                      |
+                --------------------------------------------
+                """;
+        assertEquals(expectedStatement, actualStatement);
     }
 
 }
