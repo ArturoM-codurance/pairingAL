@@ -50,7 +50,7 @@ class ShoppingBasketShould {
         shoppingBasket.printBasket();
 
         //Assert
-        verify(formatter, times(1)).oneProductStatement(bread);
+        verify(formatter, times(1)).productsStatement(products);
     }
 
     @Test
@@ -66,8 +66,7 @@ class ShoppingBasketShould {
         shoppingBasket.printBasket();
 
         //Assert
-        verify(formatter, times(1)).oneProductStatement(lettuce);
-        verify(formatter, times(1)).oneProductStatement(bread);
+        verify(formatter, times(1)).productsStatement(products);
     }
 
 }

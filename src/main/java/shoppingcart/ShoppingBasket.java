@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class ShoppingBasket {
     private final ArrayList<Product> products;
-    private  Formatter formatter;
+    private Formatter formatter;
 
-    public ShoppingBasket( Formatter formatter) {
+    public ShoppingBasket(Formatter formatter) {
         this.formatter = formatter;
         products = new ArrayList<>();
     }
@@ -25,9 +25,9 @@ public class ShoppingBasket {
         String statement = formatter.emptyStatement();
 
         if (!products.isEmpty()) {
-            Product product = products.get(0);
-            statement = formatter.oneProductStatement(product);
+            statement = formatter.productsStatement(products);
         }
+
         return statement;
     }
 

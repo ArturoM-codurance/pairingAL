@@ -1,5 +1,8 @@
 package shoppingcart;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
 public class Formatter {
     private final String STATEMENT_HEADER = "--------------------------------------------\n" +
                                                    "| Product name | Price with VAT | Quantity |\n" +
@@ -10,7 +13,7 @@ public class Formatter {
     private final String ZERO_PRODUCTS_AND_PRICE_ZERO = "| Total products: 0                        |\n" +
                                                                "| Total price: 0.00 €                      |\n";
 
-    public String oneProductStatement(Product product) {
+    public String productStatement(Product product) {
         String statement;
 
         statement = STATEMENT_HEADER +
@@ -31,5 +34,33 @@ public class Formatter {
                TOTAL_SEPARATOR +
                ZERO_PRODUCTS_AND_PRICE_ZERO +
                TOTAL_SEPARATOR;
+    }
+
+    public String productsStatement(ArrayList<Product> products) {
+        String statement;
+
+        String productList = "";
+        int totalProducts = products.size();
+        double totalPrice = 0;
+        for (Product product : products) {
+            productList += product.printProductStatementLine();
+            totalPrice += Double.parseDouble(product.FormattedPrice().replaceAll(",", "."));
+        }
+
+        statement = STATEMENT_HEADER +
+                    productList +
+                    PRODUCTS_SEPARATOR +
+                    PROMOTION_APPLIED +
+                    TOTAL_SEPARATOR +
+                    "| Total products: "+totalProducts+"                        |\n" +
+                    "| Total price: " + formattedTotal(totalPrice) + " €                      |\n" +
+                    TOTAL_SEPARATOR;
+
+        return statement;
+    }
+
+    private String formattedTotal(double totalPrice) {
+        DecimalFormat formatter = new DecimalFormat("#0.00");
+        return formatter.format(totalPrice);
     }
 }

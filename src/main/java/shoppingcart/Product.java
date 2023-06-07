@@ -17,12 +17,12 @@ public class Product {
     }
 
     public String printProductStatementLine() {
-        return String.format("| %-" + 13 + "s" + "| %-" + 14 + "s " + "| 1        |\n", this.productName, this.FormattedPrice());
+        return String.format("| %-" + 13 + "s" + "| %-" + 14 + "s " + "| 1        |\n", this.productName, this.FormattedPrice()+" €");
     }
 
     protected String FormattedPrice(){
         DecimalFormat formatter = new DecimalFormat("#0.00");
-        return formatter.format(this.price) + " €";
+        return formatter.format(this.price);
     }
 
 }
