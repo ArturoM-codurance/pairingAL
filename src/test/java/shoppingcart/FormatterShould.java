@@ -34,10 +34,11 @@ class FormatterShould {
     void print_basket_with_one_product(){
         //Arrange
         Product bread = new Product("Bread", 0.88);
+        ArrayList<Product> product = new ArrayList<>(List.of(bread));
         Formatter formatter = new Formatter();
 
         //Act
-        String statementReceived = formatter.oneProductStatement(bread);
+        String statementReceived = formatter.productsStatement(product);
 
         //Arrange
         String expectedStatement = """
@@ -53,14 +54,16 @@ class FormatterShould {
                 --------------------------------------------
                 """;
         assertEquals(expectedStatement, statementReceived);
-    }@Test
+    }
+    @Test
     void print_basket_with_another_product(){
         //Arrange
         Product corn = new Product("Corn", 1.50);
+        ArrayList<Product> product = new ArrayList<>(List.of(corn));
         Formatter formatter = new Formatter();
 
         //Act
-        String statementReceived = formatter.oneProductStatement(corn);
+        String statementReceived = formatter.productsStatement(product);
 
         //Arrange
         String expectedStatement = """
@@ -73,6 +76,33 @@ class FormatterShould {
                 --------------------------------------------
                 | Total products: 1                        |
                 | Total price: 1,50 €                      |
+                --------------------------------------------
+                """;
+        assertEquals(expectedStatement, statementReceived);
+    }
+    @Test
+    void print_basket_with_two_products(){
+        //Arrange
+        Product corn = new Product("Corn", 1.50);
+        Product bread = new Product("Bread", 0.88);
+        ArrayList<Product> products = new ArrayList<>(List.of(corn, bread));
+        Formatter formatter = new Formatter();
+
+        //Act
+        String statementReceived = formatter.productsStatement(products);
+
+        //Arrange
+        String expectedStatement = """
+                --------------------------------------------
+                | Product name | Price with VAT | Quantity |
+                | -----------  | -------------- | -------- |
+                | Corn         | 1,50 €         | 1        |
+                | Bread        | 0,88 €         | 1        |
+                |------------------------------------------|
+                | Promotion:                               |
+                --------------------------------------------
+                | Total products: 2                        |
+                | Total price: 2,38 €                      |
                 --------------------------------------------
                 """;
         assertEquals(expectedStatement, statementReceived);
