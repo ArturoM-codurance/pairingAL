@@ -9,8 +9,6 @@ public class Formatter {
     private final String PROMOTION_APPLIED = "| Promotion:                               |\n";
     private final String TOTAL_SEPARATOR = "--------------------------------------------\n";
     private final String PRODUCTS_SEPARATOR = "|------------------------------------------|\n";
-    private final String ZERO_PRODUCTS_AND_PRICE_ZERO = "| Total products: 0                        |\n" +
-                                                        "| Total price: 0.00 €                      |\n";
 
     public String assembleStatement(ProductsList products) {
         String statement;

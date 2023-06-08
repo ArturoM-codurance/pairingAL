@@ -10,7 +10,10 @@ participant Shopping Basket
 
 participant Formatter
 
+participant ProductList
+
 participant Product
+
 
 
 box over User, Product: Add product to basket
@@ -25,20 +28,24 @@ User-->ShoppingCartService: checked product
 
 ShoppingCartService->Shopping Basket: store
 
+Shopping Basket->ProductList: store
+
 box over User, Product: print the basket
 
 User->ShoppingCartService: I need to print things
 
 ShoppingCartService->Shopping Basket: I need to print things
 
-Shopping Basket->Formatter: to string yourself -to compare-
+Shopping Basket->Formatter:here you have my ProductList
 
-Formatter->Product: string yourself and do your own stuff
+Formatter->ProductList: we need the products to do what they know
+
+ProductList->Product: do each one of the list your onw things and build what I need
 
 Product->Formatter: here you go
 
-Formatter->Shopping Basket: here I am "stringed"
+Formatter->Shopping Basket: here I am stringified
 
-Shopping Basket->ShoppingCartService: here you go the formatted info
+Shopping Basket->ShoppingCartService: here you go the string
 
-ShoppingCartService->User: product/s back
+ShoppingCartService->User: product/s string
