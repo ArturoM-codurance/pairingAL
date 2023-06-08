@@ -1,7 +1,6 @@
 package shoppingcart;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 public class Formatter {
     private final String STATEMENT_HEADER = "--------------------------------------------\n" +
@@ -22,24 +21,16 @@ public class Formatter {
                TOTAL_SEPARATOR;
     }
 
-    public String productsStatement(ArrayList<Product> products) {
+    public String productsStatement(ProductsList products) {
         String statement;
 
-        StringBuilder productList = new StringBuilder();
-        int totalProducts = products.size();
-        double totalPrice = 0;
-        for (Product product : products) {
-            productList.append(product.printProductStatementLine());
-            totalPrice += Double.parseDouble(product.FormattedPrice().replaceAll(",", "."));
-        }
-
         statement = STATEMENT_HEADER +
-                    productList +
+                    products.allProductsString() +
                     PRODUCTS_SEPARATOR +
                     PROMOTION_APPLIED +
                     TOTAL_SEPARATOR +
-                    "| Total products: " + totalProducts + "                        |\n" +
-                    "| Total price: " + formattedTotal(totalPrice) + " €                      |\n" +
+                    "| Total products: " + products.totalAmount() + "                        |\n" +
+                    "| Total price: " + formattedTotal(products.calculateTotalPrice()) + " €                      |\n" +
                     TOTAL_SEPARATOR;
 
         return statement;
