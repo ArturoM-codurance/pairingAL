@@ -48,5 +48,25 @@ class ProductsListShould {
         assertEquals(expectedString, receivedProduct);
     }
 
+    @Test
+    void return_products_stringified_with_quantity_two() {
+        //Arrange
+        Product corn1 = new Product("Corn", 0.73);
+        Product corn2 = new Product("Corn", 0.73);
+        Product Bread = new Product("Bread", 0.88);
+        Product tomatoe1 = new Product("Tomatoe", 0.73);
+        Product tomatoe2 = new Product("Tomatoe", 0.73);
+        ArrayList<Product> storedProducts = new ArrayList<>(List.of(corn1, corn2, Bread, tomatoe1, tomatoe2));
+        ProductsList productsList = new ProductsList(storedProducts);
+
+        //Act
+        String receivedProduct = productsList.allProductsString();
+        //Arrange
+        String expectedString = "| Corn         | 0,73 €         | 2        |\n" +
+                                "| Bread        | 0,88 €         | 1        |\n" +
+                                "| Tomatoe      | 0,73 €         | 2        |\n";
+        assertEquals(expectedString, receivedProduct);
+    }
+
 
 }
