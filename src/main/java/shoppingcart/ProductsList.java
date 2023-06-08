@@ -8,7 +8,6 @@ public class ProductsList {
     private final ArrayList<Product> products;
 
     public ProductsList(ArrayList<Product> products) {
-
         this.products = products;
     }
 
@@ -22,9 +21,20 @@ public class ProductsList {
 
     public String allProductsString() {
         StringBuilder productList = new StringBuilder();
+
+        Map<Product, Integer> map = new HashMap<>();
         for (Product product : products) {
-            productList.append(product.printProductStatementLine());
+            if (map.containsKey(product)) {
+                map.put(product, map.get(product) + 1);
+            } else {
+                map.put(product, 1);
+            }
         }
+
+        for (Product product : map.keySet()) {
+            productList.append(product.printProductStatementLine(map.get(product)));
+        }
+
         return String.valueOf(productList);
     }
 
