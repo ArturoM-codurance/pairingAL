@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ShoppingBasket {
     private final ProductsList productsList;
-    private Formatter formatter;
+    private final Formatter formatter;
 
     public ShoppingBasket(Formatter formatter) {
         this.formatter = formatter;
@@ -18,7 +18,6 @@ public class ShoppingBasket {
     }
 
     public void store(Product productToStore) {
-//        products.add(productToStore);
         productsList.add(productToStore);
     }
 
