@@ -33,6 +33,20 @@ class ProductsListShould {
         //Arrange
         assertEquals(storedProducts, receivedProducts);
     }
+    @Test
+    void return_a_product_stringified_with_quantity_two() {
+        //Arrange
+        Product corn1 = new Product("Corn", 0.73);
+        Product corn2 = new Product("Corn", 0.73);
+        ArrayList<Product> storedProducts = new ArrayList<>(List.of(corn1, corn2));
+        ProductsList productsList = new ProductsList(storedProducts);
+
+        //Act
+        String receivedProduct = productsList.allProductsString();
+        //Arrange
+        String expectedString = "| Corn         | 0,73 €         | 2        |\n";
+        assertEquals(expectedString, receivedProduct);
+    }
 
 
 }
