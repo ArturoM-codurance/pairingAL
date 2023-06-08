@@ -1,4 +1,4 @@
-title This is a title
+title Shopping basket
 
 participant User
 
@@ -8,22 +8,36 @@ participant Product Catalog
 
 participant Shopping Basket
 
+participant Formatter
+
 participant Product
 
 
-User->Product Catalog: lookup item
+box over User, Product: Add product to basket
 
-Product Catalog->User: product back
+User->ShoppingCartService: I want to add this item
 
-User->ShoppingCartService: checked product
+ShoppingCartService->Product Catalog: lookup item
+
+Product Catalog->ShoppingCartService: product back
+
+User-->ShoppingCartService: checked product
 
 ShoppingCartService->Shopping Basket: store
 
+box over User, Product: print the basket
+
+User->ShoppingCartService: I need to print things
+
 ShoppingCartService->Shopping Basket: I need to print things
 
-Shopping Basket->Product: to string yourself -to compare-
+Shopping Basket->Formatter: to string yourself -to compare-
 
-Product->Shopping Basket: here I am "stringed"
+Formatter->Product: string yourself and do your own stuff
+
+Product->Formatter: here you go
+
+Formatter->Shopping Basket: here I am "stringed"
 
 Shopping Basket->ShoppingCartService: here you go the formatted info
 
