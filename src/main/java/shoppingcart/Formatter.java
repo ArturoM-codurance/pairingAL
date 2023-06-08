@@ -16,12 +16,12 @@ public class Formatter {
         String statement;
 
         statement = STATEMENT_HEADER +
-                    (products.allProductsString().isEmpty() ? "" : products.allProductsString()) +
+                    (products.isEmpty() ? "" : products.allProductsString()) +
                     PRODUCTS_SEPARATOR +
                     PROMOTION_APPLIED +
                     TOTAL_SEPARATOR +
-                    "| Total products: " + (products.totalAmount() == 0 ? 0 : products.totalAmount()) + "                        |\n" +
-                    "| Total price: " + formattedTotal((products.calculateTotalPrice() == 0 ? 0 : products.calculateTotalPrice())) + " €                      |\n" +
+                    "| Total products: " + (products.isEmpty() ? 0 : products.totalAmount()) + "                        |\n" +
+                    "| Total price: " + formattedTotal((products.isEmpty() ? 0 : products.calculateTotalPrice())) + " €                      |\n" +
                     TOTAL_SEPARATOR;
 
         return statement;
