@@ -14,22 +14,23 @@ class ShoppingBasketShould {
     void store_received_products(){
         //Arrange
         Product productToStore = new Product("Corn", 0.73);
-        ArrayList<Product> storedProducts = new ArrayList<>(List.of());
-        Formatter formatter = new Formatter();
-        ShoppingBasket shoppingBasket = new ShoppingBasket(storedProducts, formatter);
+        Formatter formatter = mock(Formatter.class);
+        ProductsList productsList = mock(ProductsList.class);
+        ShoppingBasket shoppingBasket = new ShoppingBasket(productsList, formatter);
 
         //Act
         shoppingBasket.store(productToStore);
+
         //Assert
-        assertTrue(storedProducts.contains(productToStore));
+        verify(productsList, times(1)).add(productToStore);
     }
     
     @Test
     void print_empty_basket(){
         //Arrange
-        ArrayList<Product> products = new ArrayList<>();
         Formatter formatter = mock(Formatter.class);
-        ShoppingBasket shoppingBasket = new ShoppingBasket(products, formatter);
+        ProductsList productsList = mock(ProductsList.class);
+        ShoppingBasket shoppingBasket = new ShoppingBasket(productsList, formatter);
 
         //Act
         shoppingBasket.printBasket();
@@ -43,14 +44,15 @@ class ShoppingBasketShould {
         //Arrange
         Product bread = new Product("Bread", 0.88);
         ArrayList<Product> products = new ArrayList<>(List.of(bread));
+        ProductsList productsList = new ProductsList(products);
         Formatter formatter = mock(Formatter.class);
-        ShoppingBasket shoppingBasket = new ShoppingBasket(products, formatter);
+        ShoppingBasket shoppingBasket = new ShoppingBasket(productsList, formatter);
 
         //Act
         shoppingBasket.printBasket();
 
         //Assert
-        verify(formatter, times(1)).productsStatement(products);
+        verify(formatter, times(1)).productsStatement(productsList);
     }
 
     @Test
@@ -59,14 +61,15 @@ class ShoppingBasketShould {
         Product lettuce = new Product("lettuce", 0.73);
         Product bread = new Product("Bread", 0.88);
         ArrayList<Product> products = new ArrayList<>(List.of(lettuce, bread));
+        ProductsList productsList = new ProductsList(products);
         Formatter formatter = mock(Formatter.class);
-        ShoppingBasket shoppingBasket = new ShoppingBasket(products, formatter);
+        ShoppingBasket shoppingBasket = new ShoppingBasket(productsList, formatter);
 
         //Act
         shoppingBasket.printBasket();
 
         //Assert
-        verify(formatter, times(1)).productsStatement(products);
+        verify(formatter, times(1)).productsStatement(productsList);
     }
 
 }

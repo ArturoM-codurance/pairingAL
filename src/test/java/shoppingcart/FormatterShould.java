@@ -35,10 +35,11 @@ class FormatterShould {
         //Arrange
         Product bread = new Product("Bread", 0.88);
         ArrayList<Product> product = new ArrayList<>(List.of(bread));
+        ProductsList productsList = new ProductsList(product);
         Formatter formatter = new Formatter();
 
         //Act
-        String statementReceived = formatter.productsStatement(product);
+        String statementReceived = formatter.productsStatement(productsList);
 
         //Arrange
         String expectedStatement = """
@@ -60,10 +61,11 @@ class FormatterShould {
         //Arrange
         Product corn = new Product("Corn", 1.50);
         ArrayList<Product> product = new ArrayList<>(List.of(corn));
+        ProductsList productsList = new ProductsList(product);
         Formatter formatter = new Formatter();
 
         //Act
-        String statementReceived = formatter.productsStatement(product);
+        String statementReceived = formatter.productsStatement(productsList);
 
         //Arrange
         String expectedStatement = """
@@ -86,10 +88,11 @@ class FormatterShould {
         Product corn = new Product("Corn", 1.50);
         Product bread = new Product("Bread", 0.88);
         ArrayList<Product> products = new ArrayList<>(List.of(corn, bread));
+        ProductsList productsList = new ProductsList(products);
         Formatter formatter = new Formatter();
 
         //Act
-        String statementReceived = formatter.productsStatement(products);
+        String statementReceived = formatter.productsStatement(productsList);
 
         //Arrange
         String expectedStatement = """

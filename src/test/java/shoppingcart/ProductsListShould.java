@@ -20,5 +20,19 @@ class ProductsListShould {
         //Arrange
         assertTrue(storedProducts.contains(productToStore));
     }
+    @Test
+    void return_all_products(){
+        //Arrange
+        Product productToStore = new Product("Corn", 0.73);
+        ArrayList<Product> storedProducts = new ArrayList<>(List.of(productToStore));
+        ProductsList productsList = new ProductsList(storedProducts);
+
+        //Act
+        ArrayList<Product> receivedProducts = productsList.allProducts();
+        //Arrange
+        assertEquals(storedProducts, receivedProducts);
+    }
+
+
 
 }
