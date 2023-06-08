@@ -1,7 +1,7 @@
 package shoppingcart;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ProductsList {
@@ -22,7 +22,18 @@ public class ProductsList {
     public String allProductsString() {
         StringBuilder productList = new StringBuilder();
 
-        Map<Product, Integer> map = new HashMap<>();
+        Map<Product, Integer> map = mapProductAndUnits();
+
+        for (Product productMapped : map.keySet()) {
+            Integer productUnits = map.get(productMapped);
+            productList.append(productMapped.printProductStatementLineWithNumberOfUnits(productUnits));
+        }
+
+        return String.valueOf(productList);
+    }
+
+    private Map<Product, Integer> mapProductAndUnits() {
+        Map<Product, Integer> map = new LinkedHashMap<>();
         for (Product product : products) {
             if (map.containsKey(product)) {
                 map.put(product, map.get(product) + 1);
@@ -30,12 +41,7 @@ public class ProductsList {
                 map.put(product, 1);
             }
         }
-
-        for (Product product : map.keySet()) {
-            productList.append(product.printProductStatementLine(map.get(product)));
-        }
-
-        return String.valueOf(productList);
+        return map;
     }
 
     public double calculateTotalPrice() {

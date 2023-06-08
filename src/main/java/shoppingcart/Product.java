@@ -16,7 +16,7 @@ public class Product {
         return productName.equals(name);
     }
 
-    public String printProductStatementLine(int units) {
+    public String printProductStatementLineWithNumberOfUnits(int units) {
         return String.format("| %-" + 13 + "s" + "| %-" + 14 + "s " + "| " + units + "        |\n", this.productName, this.FormattedPrice() + " €");
     }
 
