@@ -12,25 +12,16 @@ public class Formatter {
     private final String ZERO_PRODUCTS_AND_PRICE_ZERO = "| Total products: 0                        |\n" +
                                                         "| Total price: 0.00 €                      |\n";
 
-    public String emptyStatement() {
-        return STATEMENT_HEADER +
-               PRODUCTS_SEPARATOR +
-               PROMOTION_APPLIED +
-               TOTAL_SEPARATOR +
-               ZERO_PRODUCTS_AND_PRICE_ZERO +
-               TOTAL_SEPARATOR;
-    }
-
-    public String productsStatement(ProductsList products) {
+    public String assembleStatement(ProductsList products) {
         String statement;
 
         statement = STATEMENT_HEADER +
-                    products.allProductsString() +
+                    (products.allProductsString().isEmpty() ? "" : products.allProductsString()) +
                     PRODUCTS_SEPARATOR +
                     PROMOTION_APPLIED +
                     TOTAL_SEPARATOR +
-                    "| Total products: " + products.totalAmount() + "                        |\n" +
-                    "| Total price: " + formattedTotal(products.calculateTotalPrice()) + " €                      |\n" +
+                    "| Total products: " + (products.totalAmount() == 0 ? 0 : products.totalAmount()) + "                        |\n" +
+                    "| Total price: " + formattedTotal((products.calculateTotalPrice() == 0 ? 0 : products.calculateTotalPrice())) + " €                      |\n" +
                     TOTAL_SEPARATOR;
 
         return statement;

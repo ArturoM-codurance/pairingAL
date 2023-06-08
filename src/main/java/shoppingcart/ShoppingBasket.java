@@ -23,13 +23,7 @@ public class ShoppingBasket {
     }
 
     public String printBasket() {
-        String statement = formatter.emptyStatement();
-
-        if (!productsList.isEmpty()) {
-            statement = formatter.productsStatement(productsList);
-        }
-
-        return statement;
+        return formatter.assembleStatement(productsList);
     }
 
 }

@@ -12,9 +12,11 @@ class FormatterShould {
     @Test
     void print_empty_basket() {
         //Arrange
+        ArrayList<Product> product = new ArrayList<>(List.of());
+        ProductsList productsList = new ProductsList(product);
         Formatter formatter = new Formatter();
         //Act
-        String statementReceived = formatter.emptyStatement();
+        String statementReceived = formatter.assembleStatement(productsList);
         //Arrange
         String statementExpected = """
                 --------------------------------------------
@@ -24,7 +26,7 @@ class FormatterShould {
                 | Promotion:                               |
                 --------------------------------------------
                 | Total products: 0                        |
-                | Total price: 0.00 €                      |
+                | Total price: 0,00 €                      |
                 --------------------------------------------
                 """;
         assertEquals(statementExpected, statementReceived);
@@ -39,7 +41,7 @@ class FormatterShould {
         Formatter formatter = new Formatter();
 
         //Act
-        String statementReceived = formatter.productsStatement(productsList);
+        String statementReceived = formatter.assembleStatement(productsList);
 
         //Arrange
         String expectedStatement = """
@@ -66,7 +68,7 @@ class FormatterShould {
         Formatter formatter = new Formatter();
 
         //Act
-        String statementReceived = formatter.productsStatement(productsList);
+        String statementReceived = formatter.assembleStatement(productsList);
 
         //Arrange
         String expectedStatement = """
@@ -94,7 +96,7 @@ class FormatterShould {
         Formatter formatter = new Formatter();
 
         //Act
-        String statementReceived = formatter.productsStatement(productsList);
+        String statementReceived = formatter.assembleStatement(productsList);
 
         //Arrange
         String expectedStatement = """

@@ -28,14 +28,14 @@ class ShoppingBasketShould {
     void print_empty_basket() {
         //Arrange
         Formatter formatter = mock(Formatter.class);
-        ProductsList productsList = mock(ProductsList.class);
-        ShoppingBasket shoppingBasket = new ShoppingBasket(productsList, formatter);
+        ProductsList emptyProductsList = mock(ProductsList.class);
+        ShoppingBasket shoppingBasket = new ShoppingBasket(emptyProductsList, formatter);
 
         //Act
         shoppingBasket.printBasket();
 
         //Assert
-        verify(formatter, times(1)).emptyStatement();
+        verify(formatter, times(1)).assembleStatement(emptyProductsList);
     }
 
     @Test
@@ -51,7 +51,7 @@ class ShoppingBasketShould {
         shoppingBasket.printBasket();
 
         //Assert
-        verify(formatter, times(1)).productsStatement(productsList);
+        verify(formatter, times(1)).assembleStatement(productsList);
     }
 
     @Test
@@ -68,7 +68,7 @@ class ShoppingBasketShould {
         shoppingBasket.printBasket();
 
         //Assert
-        verify(formatter, times(1)).productsStatement(productsList);
+        verify(formatter, times(1)).assembleStatement(productsList);
     }
 
 }
