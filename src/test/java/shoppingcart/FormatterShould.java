@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class FormatterShould {
 
     @Test
-    void print_empty_basket(){
+    void print_empty_basket() {
         //Arrange
         Formatter formatter = new Formatter();
         //Act
@@ -31,7 +31,7 @@ class FormatterShould {
     }
 
     @Test
-    void print_basket_with_one_product(){
+    void print_basket_with_one_product() {
         //Arrange
         Product bread = new Product("Bread", 0.88);
         ArrayList<Product> product = new ArrayList<>(List.of(bread));
@@ -56,8 +56,9 @@ class FormatterShould {
                 """;
         assertEquals(expectedStatement, statementReceived);
     }
+
     @Test
-    void print_basket_with_another_product(){
+    void print_basket_with_another_product() {
         //Arrange
         Product corn = new Product("Corn", 1.50);
         ArrayList<Product> product = new ArrayList<>(List.of(corn));
@@ -82,8 +83,9 @@ class FormatterShould {
                 """;
         assertEquals(expectedStatement, statementReceived);
     }
+
     @Test
-    void print_basket_with_two_products(){
+    void print_basket_with_two_products() {
         //Arrange
         Product corn = new Product("Corn", 1.50);
         Product bread = new Product("Bread", 0.88);

@@ -5,13 +5,12 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class ShoppingBasketShould {
 
     @Test
-    void store_received_products(){
+    void store_received_products() {
         //Arrange
         Product productToStore = new Product("Corn", 0.73);
         Formatter formatter = mock(Formatter.class);
@@ -24,9 +23,9 @@ class ShoppingBasketShould {
         //Assert
         verify(productsList, times(1)).add(productToStore);
     }
-    
+
     @Test
-    void print_empty_basket(){
+    void print_empty_basket() {
         //Arrange
         Formatter formatter = mock(Formatter.class);
         ProductsList productsList = mock(ProductsList.class);
@@ -40,7 +39,7 @@ class ShoppingBasketShould {
     }
 
     @Test
-    void print_basket_with_one_product(){
+    void print_basket_with_one_product() {
         //Arrange
         Product bread = new Product("Bread", 0.88);
         ArrayList<Product> products = new ArrayList<>(List.of(bread));
@@ -56,7 +55,7 @@ class ShoppingBasketShould {
     }
 
     @Test
-    void print_basket_with_two_products(){
+    void print_basket_with_two_products() {
         //Arrange
         Product lettuce = new Product("lettuce", 0.73);
         Product bread = new Product("Bread", 0.88);

@@ -18,7 +18,7 @@ public class ProductsList {
         return products;
     }
 
-    public String allProductsString (){
+    public String allProductsString() {
         StringBuilder productList = new StringBuilder();
         for (Product product : products) {
             productList.append(product.printProductStatementLine());
@@ -26,7 +26,7 @@ public class ProductsList {
         return String.valueOf(productList);
     }
 
-    public double calculateTotalPrice(){
+    public double calculateTotalPrice() {
         double totalPrice = 0;
         for (Product product : products) {
             totalPrice += Double.parseDouble(product.FormattedPrice().replaceAll(",", "."));
@@ -34,11 +34,11 @@ public class ProductsList {
         return totalPrice;
     }
 
-    public int totalAmount(){
+    public int totalAmount() {
         return products.size();
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return products.isEmpty();
     }
 }

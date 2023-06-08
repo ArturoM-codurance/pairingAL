@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductsListShould {
     @Test
-    void store_received_products(){
+    void store_received_products() {
         //Arrange
         Product productToStore = new Product("Corn", 0.73);
         ArrayList<Product> storedProducts = new ArrayList<>(List.of());
@@ -20,8 +20,9 @@ class ProductsListShould {
         //Arrange
         assertTrue(storedProducts.contains(productToStore));
     }
+
     @Test
-    void return_all_products(){
+    void return_all_products() {
         //Arrange
         Product productToStore = new Product("Corn", 0.73);
         ArrayList<Product> storedProducts = new ArrayList<>(List.of(productToStore));
@@ -32,7 +33,6 @@ class ProductsListShould {
         //Arrange
         assertEquals(storedProducts, receivedProducts);
     }
-
 
 
 }
