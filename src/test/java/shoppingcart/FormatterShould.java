@@ -114,5 +114,32 @@ class FormatterShould {
                 """;
         assertEquals(expectedStatement, statementReceived);
     }
+    @Test
+    void print_basket_with_two_identical_products() {
+        //Arrange
+        Product firstCorn = new Product("Corn", 1.50);
+        Product secondCorn = new Product("Corn", 1.50);
+        ArrayList<Product> products = new ArrayList<>(List.of(firstCorn, secondCorn));
+        ProductsList productsList = new ProductsList(products);
+        Formatter formatter = new Formatter();
+
+        //Act
+        String statementReceived = formatter.assembleStatement(productsList);
+
+        //Arrange
+        String expectedStatement = """
+                --------------------------------------------
+                | Product name | Price with VAT | Quantity |
+                | -----------  | -------------- | -------- |
+                | Corn         | 1,50 €         | 2        |
+                |------------------------------------------|
+                | Promotion:                               |
+                --------------------------------------------
+                | Total products: 2                        |
+                | Total price: 3,00 €                      |
+                --------------------------------------------
+                """;
+        assertEquals(expectedStatement, statementReceived);
+    }
 
 }

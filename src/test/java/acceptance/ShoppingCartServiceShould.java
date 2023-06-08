@@ -70,6 +70,35 @@ public class ShoppingCartServiceShould {
                 --------------------------------------------
                 """;
         assertEquals(expectedPrintedShoppingCart,receivedPrintedShoppingCart);
+    }@Test
+    void add_two_products_of_the_same_type_that_exist_and_print_the_cart(){
+        //Given
+        Product Bread = new Product("Bread", 0.88);
+        List<Product> catalog = new ArrayList<>(List.of(Bread));
+        ProductCatalog productCatalog = new ProductCatalog(catalog);
+        Formatter formatter = new Formatter();
+        ShoppingBasket shoppingBasket = new ShoppingBasket(formatter);
+        ShoppingCartService shoppingCartService = new ShoppingCartService(productCatalog, shoppingBasket);
+
+        //When
+        shoppingCartService.addItem("Bread");
+        shoppingCartService.addItem("Bread");
+
+        //Then
+        String receivedPrintedShoppingCart = shoppingCartService.printShoppingCart();
+        String expectedPrintedShoppingCart = """
+                --------------------------------------------
+                | Product name | Price with VAT | Quantity |
+                | -----------  | -------------- | -------- |
+                | Bread        | 0,88 €         | 2        |
+                |------------------------------------------|
+                | Promotion:                               |
+                --------------------------------------------
+                | Total products: 2                        |
+                | Total price: 1,76 €                      |
+                --------------------------------------------
+                """;
+        assertEquals(expectedPrintedShoppingCart,receivedPrintedShoppingCart);
     }
 
 }

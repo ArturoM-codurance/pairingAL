@@ -1,6 +1,8 @@
 package shoppingcart;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProductsList {
     private final ArrayList<Product> products;
