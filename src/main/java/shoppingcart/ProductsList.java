@@ -35,11 +35,8 @@ public class ProductsList {
     private Map<Product, Integer> mapProductAndUnits() {
         Map<Product, Integer> map = new LinkedHashMap<>();
         for (Product product : products) {
-            if (map.containsKey(product)) {
-                map.put(product, map.get(product) + 1);
-            } else {
-                map.put(product, 1);
-            }
+            int amount = map.getOrDefault(product,0);
+            map.put(product, amount + 1);
         }
         return map;
     }
