@@ -1,5 +1,6 @@
 package org.restbankaccount;
 
+import com.eclipsesource.json.JsonObject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -7,9 +8,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import spark.Request;
 import spark.Response;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AccountControllerShould {
@@ -24,7 +23,8 @@ class AccountControllerShould {
         //Arrange
         int amount = 10;
         AccountService accountService = mock(AccountService.class);
-        AccountController accountController = new AccountController();
+        AccountController accountController = new AccountController(accountService);
+        when(request.body()).thenReturn(new JsonObject().add("amount", amount).toString());
 
         //Act
         accountController.deposit(request, response);

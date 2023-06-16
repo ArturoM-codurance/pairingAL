@@ -10,11 +10,13 @@ repositories {
 }
 
 dependencies {
+    implementation ("com.eclipsesource.minimal-json:minimal-json:0.9.5")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("com.sparkjava:spark-core:2.9.4")
     testImplementation("org.mockito:mockito-core:5.2.0")
     testImplementation("org.mockito:mockito-junit-jupiter:5.2.0")
+
 }
 
 tasks.test {
